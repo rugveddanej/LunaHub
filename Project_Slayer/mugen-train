@@ -39,7 +39,7 @@ function findMob(hrp)
 end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "LunaSave"})
+local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "LunaSave", Draggable = true})
 
 local GlobalGKA = Window:MakeTab({
     Name = "Global KillAura",
