@@ -19,7 +19,9 @@ end
 local gameScripts = {
     [11468034852] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mugen-train", -- Replace with actual game ID and script URL
     [11468075017] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwigahara",
-    [13883059853] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwohanap"-- Replace with actual game ID and script URL
+    [13883059853] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwohanap",
+    [13883279773] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mapp"
+    -- Replace with actual game ID and script URL
 }
 
 -- Get the current game ID
