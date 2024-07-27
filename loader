@@ -19,10 +19,10 @@ end
 local gameScripts = {
     [11468034852] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mugen-train", -- Replace with actual game ID and script URL
     [11468075017] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwigahara",
-    [13883059853] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwohanap",
-    [13883279773] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mapp",
-    [17387475546] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mapv2",
-    [17387482786] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwohanav3"
+    [13883059853] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map2p",
+    [13883279773] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map1p",
+    [17387475546] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map1n",
+    [17387482786] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map2n"
     -- Replace with actual game ID and script URL
 }
 
