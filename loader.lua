@@ -18,7 +18,8 @@ end
 -- Define a table with game IDs and corresponding script URLs
 local gameScripts = {
     [11468034852] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mugen-train", -- Replace with actual game ID and script URL
-    [2345678901] = "https://raw.githubusercontent.com/username/repo/branch/path/to/script2.lua"  -- Replace with actual game ID and script URL
+    [11468075017] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwigahara",
+    [13883059853] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwohanap"-- Replace with actual game ID and script URL
 }
 
 -- Get the current game ID
