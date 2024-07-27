@@ -1,3 +1,4 @@
+-- Function to load and execute a script from a given URL
 local function loadScriptFromGitHub(url)
     local success, scriptContent = pcall(function()
         return game:HttpGet(url)
@@ -6,7 +7,10 @@ local function loadScriptFromGitHub(url)
     if success then
         local loadedFunction, loadError = loadstring(scriptContent)
         if loadedFunction then
-            pcall(loadedFunction)
+            local executeSuccess, executeError = pcall(loadedFunction)
+            if not executeSuccess then
+                warn("Error executing loaded script: ", executeError)
+            end
         else
             warn("Error loading script: ", loadError)
         end
@@ -15,15 +19,14 @@ local function loadScriptFromGitHub(url)
     end
 end
 
--- Define a table with game IDs and corresponding script URLs
+-- Table with game IDs and corresponding script URLs
 local gameScripts = {
-    [11468034852] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mugen-train", -- Replace with actual game ID and script URL
+    [11468034852] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mugen-train",
     [11468075017] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwigahara",
     [13883059853] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map2p",
     [13883279773] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map1p",
     [17387475546] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map1n",
     [17387482786] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map2n"
-    -- Replace with actual game ID and script URL
 }
 
 -- Get the current game ID
