@@ -22,7 +22,7 @@ local gameScripts = {
     [13883059853] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwohanap",
     [13883279773] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mapp",
     [17387475546] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/mapv2",
-    [17387475546] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwohanav3"
+    [17387482786] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/ouwohanav3"
     -- Replace with actual game ID and script URL
 }
 
