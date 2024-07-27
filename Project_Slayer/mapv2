@@ -395,6 +395,14 @@ tabsettingsgb:AddButton({
   	end    
 })
 
+tabsettingsgb:AddButton({
+	Name = "Enable Chat",
+    Callback = function()
+        -- Enable chat functionality
+        game.StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true)
+    end
+})
+
 
 -- farming tab
 local farmsettingsgb = AutoFarm:AddSection({
