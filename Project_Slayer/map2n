@@ -370,6 +370,13 @@ local Buffs = Window:MakeTab({
     PremiumOnly = false
 })
 
+
+local Teleport = Window:MakeTab({
+    Name = "Teleport",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
 local WebHook = Window:MakeTab({
     Name = "Webhook settings",
     Icon = "rbxassetid://4483345998",
@@ -380,6 +387,27 @@ local UISettings = Window:MakeTab({
     Name = "UI Settings",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
+})
+
+local tabtp = Teleport:AddSection({
+        Name = "Server"
+
+tabtp:AddButton({
+    Name = "Join Small/Empty Server",
+    Callback = function()
+        local smallestServer = getSmallestServer()
+        if smallestServer then
+            print("Joining server with " .. smallestServer.playing .. " players.")
+            local teleportSuccess, teleportError = pcall(function()
+                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, smallestServer.id)
+            end)
+            if not teleportSuccess then
+                warn("Teleport failed: " .. teleportError)
+            end
+        else
+            print("No available servers found.")
+        end
+    end
 })
 
 -- ui tab
