@@ -242,7 +242,7 @@ local result, difference = evaluateTrade(yourItems, offeredItems, yourQuantities
 print("Trade result: " .. result .. ", Difference: " .. difference)
 
 -- GUI setup using Orion Library
-local Window = OrionLib:MakeWindow({Name = "Luna Hub", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Luna Hub"})
+local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Luna Hub"})
 
 -- Create a new tab
 local TradeTab = Window:MakeTab({
