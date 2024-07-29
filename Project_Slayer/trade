@@ -264,15 +264,15 @@ local function evaluateTrade()
     local differenceValue
 
     if difference > 0 then
-        status = "Good Trade"
+        status = "This is a Good Trade"
         differenceLabel = "Profit"
         differenceValue = "+" .. difference .. " Ores"
     elseif difference < 0 then
-        status = "Bad Trade"
+        status = "This is a Bad Trade"
         differenceLabel = "Loss"
         differenceValue = difference .. " Ores"
     else
-        status = "This is Decent Trade"
+        status = "This is a Decent Trade"
         differenceLabel = "This Trade has no profits and losses"
         differenceValue = ""
     end
