@@ -345,6 +345,36 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 
 local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "LunaHub ", Draggable = true})
 
+-- Function to get the smallest server
+local function getSmallestServer()
+    local HttpService = game:GetService("HttpService")
+    local cursor = ""
+    local maxServersToCheck = 5  -- Limit the number of servers to check for faster results
+
+    for _ = 1, maxServersToCheck do
+        local success, response = pcall(function()
+            return HttpService:JSONDecode(game:HttpGet("https://games.roblox.com/v1/games/" .. game.PlaceId .. "/servers/Public?sortOrder=Asc&limit=100&cursor=" .. cursor))
+        end)
+
+        if success and response and response.data then
+            for _, server in ipairs(response.data) do
+                if server.playing < server.maxPlayers then
+                    return server  -- Return immediately for faster join
+                end
+            end
+            cursor = response.nextPageCursor
+            if not cursor then
+                break
+            end
+        else
+            warn("Failed to fetch server data")
+            break
+        end
+    end
+    return nil
+end
+
+
 local AutoFarm = Window:MakeTab({
     Name = "AutoFarm",
     Icon = "rbxassetid://4483345998",
@@ -369,6 +399,12 @@ local Buffs = Window:MakeTab({
     PremiumOnly = false
 })
 
+local Teleport = Window:MakeTab({
+    Name = "Teleport",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
 local WebHook = Window:MakeTab({
     Name = "Webhook settings",
     Icon = "rbxassetid://4483345998",
@@ -379,6 +415,27 @@ local UISettings = Window:MakeTab({
     Name = "UI Settings",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
+})
+
+local tabtp = Teleport:AddSection({
+        Name = "Server"
+
+tabtp:AddButton({
+    Name = "Join Small/Empty Server",
+    Callback = function()
+        local smallestServer = getSmallestServer()
+        if smallestServer then
+            print("Joining server with " .. smallestServer.playing .. " players.")
+            local teleportSuccess, teleportError = pcall(function()
+                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, smallestServer.id)
+            end)
+            if not teleportSuccess then
+                warn("Teleport failed: " .. teleportError)
+            end
+        else
+            print("No available servers found.")
+        end
+    end
 })
 
 -- ui tab
