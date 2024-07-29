@@ -1,0 +1,113 @@
+-- Load Orion Library
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+-- Function to determine trade "Good Trade" or "Bad Trade"
+function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantities)
+    local itemValues = {
+        ["None"] = 0,
+        ["Item1"] = 100,
+        ["Item2"] = 200,
+        ["Item3"] = 300,
+        -- Add more items and their values here
+    }
+    
+    local yourValue = 0
+    for i, item in ipairs(yourItems) do
+        yourValue = yourValue + (itemValues[item] or 0) * (yourQuantities[i] or 1)
+    end
+    
+    local offeredValue = 0
+    for i, item in ipairs(offeredItems) do
+        offeredValue = offeredValue + (itemValues[item] or 0) * (offeredQuantities[i] or 1)
+    end
+    
+    if yourValue == 0 and offeredValue == 0 then
+        return "Invalid items.", 0
+    end
+    
+    local difference = offeredValue - yourValue
+    local result = offeredValue >= yourValue and "Good Trade" or "Bad Trade"
+    
+    return result, difference
+end
+
+-- Example usage
+local yourItems = {"None", "None", "None", "None", "None"}
+local offeredItems = {"None", "None", "None", "None", "None"}
+local yourQuantities = {1, 1, 1, 1, 1}
+local offeredQuantities = {1, 1, 1, 1, 1}
+local result, difference = evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantities)
+print("Trade result: " .. result .. ", Difference: " .. difference)
+
+-- GUI setup using Orion Library
+local Window = OrionLib:MakeWindow({Name = "Project Slayer Trade Bot", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Luna Hub"})
+
+-- Create a new tab
+local TradeTab = Window:MakeTab({
+    Name = "Trade",
+    Icon = "rbxassetid://4921385798", -- You can set a custom icon here
+    PremiumOnly = false
+})
+
+-- Add sections to the Trade tab
+TradeTab:AddSection({Name = "Your Items", Collapsible = true})
+TradeTab:AddLabel("Select your items to evaluate trade")
+
+-- List of items for the dropdown menu
+local items = {"None", "Item1", "Item2", "Item3"} -- Add more items as needed
+local quantities = {1, 2, 3, 4, 5} -- Add more quantities as needed
+
+local yourItemsDropdowns = {}
+local offeredItemsDropdowns = {}
+local yourQuantitiesDropdowns = {}
+local offeredQuantitiesDropdowns = {}
+
+-- Function to add dropdown for selecting items or quantities
+local function addDropdown(dropdownList, name, options, default, callback)
+    table.insert(dropdownList, TradeTab:AddDropdown({
+        Name = name,
+        Default = default, -- Set the default value
+        Options = options,
+        Callback = callback
+    }))
+end
+
+-- Add multiple dropdowns for your items
+for i = 1, 5 do -- Increased the number of dropdowns to 5
+    addDropdown(yourItemsDropdowns, "Your Item " .. i, items, "None", function(value)
+        yourItems[i] = value
+    end)
+    addDropdown(yourQuantitiesDropdowns, "Your Item " .. i .. " Quantity", quantities, 1, function(value)
+        yourQuantities[i] = tonumber(value)
+    end)
+end
+
+TradeTab:AddSection({Name = "Offered Items", Collapsible = true})
+TradeTab:AddLabel("Select offered items to evaluate trade")
+
+-- Add multiple dropdowns for offered items
+for i = 1, 5 do -- Increased the number of dropdowns to 5
+    addDropdown(offeredItemsDropdowns, "Offered Item " .. i, items, "None", function(value)
+        offeredItems[i] = value
+    end)
+    addDropdown(offeredQuantitiesDropdowns, "Offered Item " .. i .. " Quantity", quantities, 1, function(value)
+        offeredQuantities[i] = tonumber(value)
+    end)
+end
+
+-- Add section for result and button to evaluate trade
+TradeTab:AddSection({Name = "Result"})
+TradeTab:AddButton({
+    Name = "Evaluate Trade",
+    Callback = function()
+        local result, difference = evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantities)
+        local profitOrLoss = difference >= 0 and "Profit" or "Loss"
+        OrionLib:MakeNotification({
+            Name = "Trade Result",
+            Content = "The trade is a: " .. result .. ". " .. profitOrLoss .. ": " .. math.abs(difference) .. " Ores",
+            Time = 5
+        })
+    end
+})
+
+OrionLib:Init()
