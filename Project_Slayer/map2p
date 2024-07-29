@@ -344,7 +344,7 @@ end)
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "LunaHub ", Draggable = true })
+local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "LunaHub ", IntroText = "Luna Hub" })
 
 local AutoFarm = Window:MakeTab({
     Name = "AutoFarm",
