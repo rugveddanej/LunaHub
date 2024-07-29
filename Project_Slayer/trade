@@ -242,7 +242,7 @@ local result, difference = evaluateTrade(yourItems, offeredItems, yourQuantities
 print("Trade result: " .. result .. ", Difference: " .. difference)
 
 -- GUI setup using Orion Library
-local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Luna Hub"})
+local Window = OrionLib:MakeWindow({Name = "Project Slayer Trade Bot", HidePremium = false, SaveConfig = false, ConfigFolder = "OrionTest", IntroText = "Luna Hub"})
 
 -- Create a new tab
 local TradeTab = Window:MakeTab({
@@ -275,7 +275,7 @@ local function addDropdown(dropdownList, name, options, default, callback)
 end
 
 -- Add multiple dropdowns for your items
-for i = 1, 500 do -- Increased the number of dropdowns to 5
+for i = 1, 5 do -- Increased the number of dropdowns to 5
     addDropdown(yourItemsDropdowns, "Your Item " .. i, items, "None", function(value)
         yourItems[i] = value
     end)
@@ -288,7 +288,7 @@ TradeTab:AddSection({Name = "Offered Items", Collapsible = true})
 TradeTab:AddLabel("Select offered items to evaluate trade")
 
 -- Add multiple dropdowns for offered items
-for i = 1, 500 do -- Increased the number of dropdowns to 5
+for i = 1, 5 do -- Increased the number of dropdowns to 5
     addDropdown(offeredItemsDropdowns, "Offered Item " .. i, items, "None", function(value)
         offeredItems[i] = value
     end)
