@@ -1,5 +1,5 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "Ultimate Trade Evaluator", HidePremium = true, SaveConfig = true, ConfigFolder = "TradeEvaluations", Theme = "Light"})
+local Window = OrionLib:MakeWindow({Name = "Luna Hub", HidePremium = true, SaveConfig = true, ConfigFolder = "LunaTrade", Theme = "Dark", IntroText = "Luna Hub"})
 
 local TradeTab = Window:MakeTab({
     Name = "Trade",
