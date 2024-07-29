@@ -26,7 +26,8 @@ local gameScripts = {
     [13883059853] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map2p",
     [13883279773] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map1p",
     [17387475546] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map1n",
-    [17387482786] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map2n"
+    [17387482786] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/map2n",
+    [13489082242] = "https://raw.githubusercontent.com/rugveddanej/LunaHub/main/Project_Slayer/trade"
 }
 
 -- Get the current game ID
