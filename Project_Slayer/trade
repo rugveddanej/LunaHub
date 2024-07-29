@@ -5,7 +5,7 @@ local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shl
 function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantities)
     local itemValues = {
         ["None"] = 0,
-        ["~ Katanas"] = 0,
+        ["- Katanas"] = 0,
         ["Green Katana (0.0166666667)"] = 0.0166666667,
         ["Golden Katana (0.0333333333)"] = 0.0333333333,
         ["Water Katana (0.25)"] = 0.25,
@@ -34,7 +34,7 @@ function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantitie
         ["Devourer Katana [Tier 1] (190)"] = 190,
         ["Devourer Katana [Tier 2] (450)"] = 450,
         ["Devourer Katana [Tier 3] (900)"] = 900,
-        ["~ Demon Weapons"] = 0,
+        ["- Demon Weapons"] = 0,
         ["Scythe (1)"] = 1,
         ["Metal Scythe (2)"] = 2,
         ["Skull Scythe (5)"] = 5,
@@ -63,11 +63,11 @@ function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantitie
         ["Devourer Fans [Tier 1] (190)"] = 190,
         ["Devourer Fans [Tier 2] (450)"] = 450,
         ["Devourer Fans [Tier 3] (900)"] = 900,
-        ["~ Hats"] = 0,
+        ["- Hats"] = 0,
         ["Straw Hat (3)"] = 3,
         ["Black Bamboo Amigasa (3)"] = 3,
         ["Samurai Maiden's Amigasa (115)"] = 115,
-        ["~ Masks"] = 0,
+        ["- Masks"] = 0,
         ["Nezuko’s Bamboo Pacifier (1)"] = 1,
         ["Akuma Kurenza Mask (1)"] = 1,
         ["Bandaged Blindfold (1)"] = 1,
@@ -96,7 +96,7 @@ function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantitie
         ["Polar Mask (5)"] = 5,
         ["Devourer Mask (5)"] = 5,
         ["Champion Mask (1500)"] = 1500,
-        ["~ Scarves"] = 0,
+        ["- Scarves"] = 0,
         ["Black Caped Scarf (1)"] = 1,
         ["Black Hooded Scarf (1)"] = 1,
         ["Brown Scarf (1)"] = 1,
@@ -106,7 +106,7 @@ function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantitie
         ["Vigilante Scarf (1)"] = 1,
         ["Red Scarf (2)"] = 2,
         ["Champion Scarf (2000)"] = 2000,
-        ["~ Necklaces"] = 0,
+        ["- Necklaces"] = 0,
         ["Arrow Necklace (1)"] = 1,
         ["Blood Necklace (1)"] = 1,
         ["Dream Necklace (1)"] = 1,
@@ -125,20 +125,20 @@ function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantitie
         ["Rusty Necklace (1)"] = 1,
         ["Riyaku Necklace (1)"] = 1,
         ["Champion Necklace (1500)"] = 1500,
-        ["~ Tops"] = 0,
+        ["- Tops"] = 0,
         ["Akaza Top (90)"] = 90,
         ["Douma Top (5)"] = 5,
         ["Enmu Top (70)"] = 70,
         ["Polar Top (6)"] = 6,
         ["Devourer Top (120)"] = 120,
-        ["~ Bottoms"] = 0,
+        ["- Bottoms"] = 0,
         ["Inosuke Bottom (1)"] = 1,
         ["Akaza Bottom (95)"] = 95,
         ["Douma Bottom (5)"] = 5,
         ["Enmu Bottom (65)"] = 65,
         ["Polar Bottom (6)"] = 6,
         ["Devourer Bottom (65)"] = 65,
-        ["~ Haories"] = 0,
+        ["- Haories"] = 0,
         ["Black Lily Haorie (1)"] = 1,
         ["Black Spider Haorie (1)"] = 1,
         ["Dark Green Haorie (1)"] = 1,
@@ -163,19 +163,19 @@ function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantitie
         ["Tokosen Haorie (1)"] = 1,
         ["Rengoku Haorie (35)"] = 35,
         ["Champion Haorie (1000)"] = 1000,
-        ["~ Uniforms"] = 0,
+        ["- Uniforms"] = 0,
         ["Stone Pillar Uniform (1)"] = 1,
         ["Purple Uniform (1)"] = 1,
         ["Feminine Uniform (1)"] = 1,
         ["Wind Pillar Uniform (1)"] = 1,
         ["Tengen Uniform (25)"] = 25,
-        ["~ Lanterns"] = 0,
+        ["- Lanterns"] = 0,
         ["Lantern (1)"] = 1,
         ["Box Lantern (1)"] = 1,
         ["Old Lantern (1)"] = 1,
         ["Lantern of Everlasting Glow	 (1)"] = 1,
         ["Lantern Of Despair (1)"] = 1,
-        ["~ Materials"] = 0,
+        ["- Materials"] = 0,
         ["Blue Spider Lillies (0.04)"] = 0.04,
         ["Blood (1)"] = 1,
         ["Demon Horn (0.02)"] = 0.02,
@@ -188,7 +188,7 @@ function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantitie
         ["Living Flesh (15)"] = 15,
         ["Orbed Glacier (7)"] = 7,
         ["Skinned Hide (1)"] = 1,
-        ["~ Potions"] = 0,
+        ["- Potions"] = 0,
         ["Health Elixir (1)"] = 1,
         ["Health Regan Elixir (1)"] = 1,
         ["Stamina Elixir (1)"] = 1,
@@ -203,7 +203,7 @@ function evaluateTrade(yourItems, offeredItems, yourQuantities, offeredQuantitie
         ["Mastery Buff Elixir (3)"] = 3,
         ["Polar Elixir (3)"] = 3,
         ["Race Reset Elixir (3)"] = 3,
-        ["~ Others"] = 0,
+        ["- Others"] = 0,
         ["Bandage (1)"] = 1,
         ["Bamboo Fishing Rod (1)"] = 1,
         ["Fishing Rod (1)"] = 1,
@@ -256,12 +256,7 @@ TradeTab:AddSection({Name = "Your Items", Collapsible = true})
 TradeTab:AddLabel("Select your items to evaluate trade")
 
 -- List of items for the dropdown menu
-local items = {}
-for key, value in pairs(itemValues) do
-    if value ~= 0 then
-        table.insert(items, key)
-    end
-end
+local items = {"None", "- Katanas", "Green Katana (0.0166666667)", "Golden Katana (0.0333333333)", "Water Katana (0.25)"} -- Add more items as needed
 local quantities = {1, 2, 3, 4, 5} -- Add more quantities as needed
 
 local yourItemsDropdowns = {}
