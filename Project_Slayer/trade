@@ -3,7 +3,7 @@ local Window = OrionLib:MakeWindow({Name = "Luna Hub", HidePremium = true, SaveC
 
 local TradeTab = Window:MakeTab({
     Name = "Trade",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://6035078889",
     PremiumOnly = false
 })
 
@@ -399,5 +399,23 @@ EvaluateTradeSection:AddButton({
         createNotification("Trade Evaluation", content, 7)
     end
 })
+
+-- Create the Settings tab
+local SettingsTab = Window:MakeTab({
+    Name = "Settings",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+-- Add the Unload GUI button
+SettingsTab:AddButton({
+    Name = "Unload GUI",
+    Callback = function()
+        OrionLib:Destroy()
+    end
+})
+
+-- Initialize the GUI
+OrionLib:Init()
 
 OrionLib:Init()
