@@ -39,26 +39,24 @@ function findMob(hrp)
 end
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "LunaSave", IntroText = "Luna Hub"})
+local Window = OrionLib:MakeWindow({Name = "Luna Hub", HidePremium = false, SaveConfig = false, ConfigFolder = "LunaSave", IntroText = "Luna Hub"})
 
-local GlobalGKA = Window:MakeTab({
-    Name = "Global KillAura",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-local mugan = Window:MakeTab({
-    Name = "Auto Clash ",
+local mugen = Window:MakeTab({
+    Name = "Mugen",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
+local killaura = mugen:AddSection({
+    Name = "Kill Auras"
+})
 
 local ArrowKA = false
 local BringMobs = false
---GlobalGKA
 
-GlobalGKA:AddToggle({
-    Name = 'Arrow KA',
+
+killaura:AddToggle({
+    Name = 'Arrow Kill Aura',
     Default = false,
     Callback = function(state)
         ArrowKA = state
@@ -95,104 +93,16 @@ GlobalGKA:AddToggle({
         end)
     end
 })
---Bring Mobs
-GlobalGKA:AddToggle({
-    Name = 'Bring Mobs',
-    Default = false,
-    Callback = function(state)
-    BringMobs = state
-    task.spawn(function()
-        while BringMobs do 
-            local target = findMob(true)
-            if target then
-                repeat task.wait()
-                    local args = {
-                        [1] = "piercing_arrow_damage",
-                        [2] = player,
-                        [3] = target:GetModelCFrame(),
-                        [4] = math.huge
-                    }
-                    game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S_:InvokeServer(unpack(args))
-                until target.Humanoid.Health <= 0 or not BringMobs
-            end
-            task.wait()
-        end
-    end)
-    task.spawn(function()
-        while BringMobs do
-            local args = {
-                [1] = "skil_ting_asd",
-                [2] = player,
-                [3] = "arrow_knock_back",
-                [4] = 5
-            }
-            game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S_:InvokeServer(unpack(args))
-            task.wait(6)
-        end
-    end)
-end})
 
 -- Assuming required modules
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-GlobalGKA:AddToggle({
-Name = "ice GKA",
-Default = false,
-Callback = function(state)
-    while state do
-        local args = {
-            [1] = "skil_ting_asd",
-            [2] = game.Players.LocalPlayer,
-            [3] = "ice_demon_art_wintry_icicles", -- Corrected skill name
-            [4] = 5
-        }
-        
-        ReplicatedStorage.Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-        
-        for i = 1, 7 do
-            local args = {
-                [1] = "ice_demon_art_wintry_icicles_damage", -- Corrected skill damage name
-                [2] = workspace:WaitForChild("rugveddanej"),
-                [3] = CFrame.new(2772.278076171875, 671.7008666992188, -828.6742553710938, 0, -4.371138828673793e-08, -1, -0.00018310546875, 1, -4.371138828673793e-08, 1, 0.00018310546875, -8.003793808275539e-12)
-            }
-            
-            ReplicatedStorage.Remotes.To_Server.Handle_Initiate_S:FireServer(unpack(args))
-        end
-        
-        task.wait(15)
-    end
-end
+local clash = mugen:AddSection({
+    Name = "Clash"
 })
 
---Thunder Gka
-GlobalGKA:AddToggle({
-    Name = "Thunder Gka",
-    Default = false,
-    Callback = function(state)
-    thunderKA = state
-    while thunderKA do
-    wait(0.75)
-    
-    local ohString1 = "skil_ting_asd"
-    local ohInstance2 = game:GetService("Players").LocalPlayer
-    local ohString3 = "Thunderbreathingrapidslashes"
-    local ohNumber4 = 5
-    
-    game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(ohString1, ohInstance2, ohString3, ohNumber4)
-    
-    for i = 1, 7 do
-        wait(0.95)
-        local ohString1 = "ricespiritdamage"
-        local ohInstance2 = workspace:FindFirstChild(tostring(game.Players.LocalPlayer))
-        local ohNumber4 = 150
-    
-        game:GetService("ReplicatedStorage").Remotes.To_Server.Handle_Initiate_S:FireServer(ohString1, ohInstance2, workspace:FindFirstChild(tostring(game.Players.LocalPlayer)).HumanoidRootPart.CFrame, ohNumber4)
-    end
-    end
-end})
-
-mugan:AddButton({
-    Name = "Insta Clash",
+clash:AddButton({
+    Name = "Instant Clash",
     Callback = function()
         spawn(function()
             local args = {
@@ -205,8 +115,12 @@ mugan:AddButton({
     end
 })
 
-mugan:AddToggle({
-    Name = "Auto Chest",
+local autochest = mugen:AddSection({
+    Name = "Chest"
+})
+
+autochest:AddToggle({
+    Name = "Auto Collect Chests",
     Default = false,
     Callback = function(state)
         collectchest = state
