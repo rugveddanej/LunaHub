@@ -327,111 +327,61 @@ task.spawn(function()
 end)
 
 
---[[------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------
-]]
-
--- ANNOYING GUI PART
-
-
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
-local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "LunaHub ", IntroText = "Luna Hub" })
+local Window = OrionLib:MakeWindow({Name = "LunaHub", HidePremium = false, SaveConfig = false, ConfigFolder = "LunaHub ", IntroText = "Luna Hub"})
 
-local AutoFarm = Window:MakeTab({
-    Name = "AutoFarm",
-    Icon = "rbxassetid://4483345998",
+local grind = Window:MakeTab({
+    Name = "Grind",
+    Icon = "rbxassetid://18717869990",
     PremiumOnly = false
 })
 
-local KillAuras = Window:MakeTab({
+local killauratab = Window:MakeTab({
     Name = "Kill Auras",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://18717931050",
     PremiumOnly = false
 })
 
-local Misc = Window:MakeTab({
+local misctab = Window:MakeTab({
     Name = "Misc",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://18718007636",
     PremiumOnly = false
 })
 
-local Buffs = Window:MakeTab({
+local buffstab = Window:MakeTab({
     Name = "Buffs",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://18717962804",
     PremiumOnly = false
 })
 
-
-local Teleport = Window:MakeTab({
-    Name = "Teleport",
-    Icon = "rbxassetid://4483345998",
+-- Create the Settings tab
+local settingstab = Window:MakeTab({
+    Name = "Settings",
+    Icon = "rbxassetid://18718015946",
     PremiumOnly = false
 })
 
-local WebHook = Window:MakeTab({
-    Name = "Webhook settings",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
+local gui = settingstab:AddSection({
+    Name = "GUI"
 })
 
-local UISettings = Window:MakeTab({
-    Name = "UI Settings",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local tabtp = Teleport:AddSection({
-        Name = "Server"
-
-tabtp:AddButton({
-    Name = "Join Small/Empty Server",
+-- Add the Unload GUI button
+gui:AddButton({
+    Name = "Unload Gui",
     Callback = function()
-        local smallestServer = getSmallestServer()
-        if smallestServer then
-            print("Joining server with " .. smallestServer.playing .. " players.")
-            local teleportSuccess, teleportError = pcall(function()
-                game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, smallestServer.id)
-            end)
-            if not teleportSuccess then
-                warn("Teleport failed: " .. teleportError)
-            end
-        else
-            print("No available servers found.")
-        end
-    end
-})
-
--- ui tab
-local tabsettingsgb = UISettings:AddSection({
-        Name = "Unload"
-})
-
-
-
-tabsettingsgb:AddButton({
-	Name = "Unload GUI",
-	Callback = function()
         OrionLib:Destroy()
-  	end    
+    end
 })
 
 
 -- farming tab
-local farmsettingsgb = AutoFarm:AddSection({
-	Name = "Farm Settings"
+local grindsettings = grind:AddSection({
+	Name = "Grind Settings"
 })
 
-farmsettingsgb:AddDropdown({
-	Name = "weapon selection",
+grindsettings:AddDropdown({
+	Name = "Weapon Selection",
 	Default = "Combat",
 	Options = {"Combat", "Scythe", "Sword", "War Fans", "Claws"},
 	Callback = function(Value)
@@ -440,7 +390,7 @@ farmsettingsgb:AddDropdown({
 })
 
 
-farmsettingsgb:AddSlider({
+grindsettings:AddSlider({
 	Name = "Tween Speed",
 	Min = 100,
 	Max = 500,
@@ -454,12 +404,12 @@ farmsettingsgb:AddSlider({
 })
 
 
-local autofarmgb = AutoFarm:AddSection({
-	Name = "Auto Farm Main"
+local autogrind = grind:AddSection({
+	Name = "Grind"
 })
 
-autofarmgb:AddToggle({
-	Name = "auto boss",
+autogrind:AddToggle({
+	Name = "Tween to Bosses",
 	Default = false,
 	Callback = function(state)
 		allbossfarm = state
@@ -500,8 +450,8 @@ autofarmgb:AddToggle({
 
 
 
-autofarmgb:AddToggle({
-    Name = 'killaura (m1)',
+autogrind:AddToggle({
+    Name = 'Kill Aura',
     Default = false,
 
     Callback = function(Value)
@@ -513,8 +463,8 @@ autofarmgb:AddToggle({
     end
 })
 
-autofarmgb:AddToggle({
-    Name = 'auto collect chests',
+autogrind:AddToggle({
+    Name = 'Auto Collect Chests',
     Default = false,
 
     Callback = function(Value)
@@ -529,8 +479,8 @@ autofarmgb:AddToggle({
 
 -- KA TAB
 
-local arrowgb = KillAuras:AddSection({
-	Name = "Arrow KA (11/10)"
+local arrowkag = killauratab:AddSection({
+	Name = "Arrow Kill Aura"
 })
 
 local ArrowKA = false
@@ -538,8 +488,8 @@ local BringMobs = false
 local BreakBossesArrow = false
 local PlayerKA = false
 
-arrowgb:AddToggle({
-    Name = 'Arrow KA',
+arrowkag:AddToggle({
+    Name = 'Arrow Kill Aura',
     Default = false,
     Callback = function(state)
         ArrowKA = state
@@ -577,8 +527,8 @@ arrowgb:AddToggle({
     end
 })
 
-arrowgb:AddToggle({
-    Name = 'Bring Mobs',
+arrowkag:AddToggle({
+    Name = 'Pull Mobs',
     Default = false,
     Callback = function(state)
     BringMobs = state
@@ -613,8 +563,8 @@ arrowgb:AddToggle({
     end)
 end})
 
-arrowgb:AddToggle({
-    Name = 'Player KA',
+arrowkag:AddToggle({
+    Name = 'Player Kill Aura',
     Default = false,
     Callback = function(state)
         PlayerKA = state
@@ -652,7 +602,7 @@ arrowgb:AddToggle({
 })
 
 
-arrowgb:AddButton({
+arrowkag:AddButton({
     Name = 'Break Bosses',
     Callback = function()
         BreakBossesArrow = true
@@ -694,136 +644,13 @@ arrowgb:AddButton({
     end
 })
 
-local swampgb = KillAuras:AddSection({
-	Name = "Swamp KA (7/10)"
-})
-
-local PuddleKA = false
-
-swampgb:AddToggle({
-    Name = 'Swamp KA',
-    Default = false,
-    Callback = function(state)
-    PuddleKA = state
-    task.spawn(function()
-        while PuddleKA do 
-            local target = findMob(true)
-            if target then
-                local args = {
-                    [1] = "swamp_puddle_damage",
-                    [2] = player.Character,
-                    [3] = target:GetModelCFrame()
-                }          
-                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("To_Server"):WaitForChild("Handle_Initiate_S"):FireServer(unpack(args))                
-            end
-            task.wait(0.3)
-        end
-    end)
-    task.spawn(function()
-        while PuddleKA do
-            local args = {
-                [1] = "skil_ting_asd",
-                [2] = player,
-                [3] = "swampbda_swamp_puddle",
-                [4] = 5
-            }
-            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("To_Server"):WaitForChild("Handle_Initiate_S"):FireServer(unpack(args))        
-            task.wait(9.5)
-        end
-    end)
-end})
-
-local bloodbgb = KillAuras:AddSection({
-	Name = "Blood Burst KA (5/10)"
-})
-
-local MineKA = false
-
-bloodbgb:AddToggle({
-    Name = 'Mines KA',
-    Default = false,
-    Callback = function(state)
-    MineKA = state
-    task.spawn(function()
-        task.wait(0.5)
-        while MineKA do 
-            local target = closestMob()
-            if target then
-                local args = {
-                    [1] = "land_mines_place",
-                    [2] = player.Character,
-                    [3] = target:GetModelCFrame()
-                }    
-                game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("To_Server"):WaitForChild("Handle_Initiate_S"):FireServer(unpack(args))
-                local folder = workspace.Debree:WaitForChild(player.Name .. "'s explosive land mines")
-                task.wait(0.2)
-                for i, mine in pairs(folder:GetChildren()) do
-                    mine.DetonateEvent:FireServer()
-                end
-            end
-            task.wait()
-        end
-    end)
-    task.spawn(function()
-        while MineKA do
-            local args = {
-                [1] = "skil_ting_asd",
-                [2] = game:GetService("Players").LocalPlayer,
-                [3] = "blood_burst_explosive_land_mines",
-                [4] = 5
-            }    
-            game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("To_Server"):WaitForChild("Handle_Initiate_S"):FireServer(unpack(args))    
-            task.wait(30)
-        end
-    end)
-end})
-
-local icegb = KillAuras:AddSection({
-	Name = "Ice KA (1/10)"
-})
-
-local IceKA1 = false
-
-icegb:AddToggle({
-    Name = '1st Ice Atk KA',
-    Default = false,
-    Callback = function(state)
-        IceKA1 = state
-        task.spawn(function()
-            while IceKA1 do
-                local target = findMob(true)
-                if target then
-                    local args = {
-                        [1] = "skil_ting_asd",
-                        [2] = player,
-                        [3] = "ice_demon_art_wintry_iciles",
-                        [4] = 5
-                    }
-                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("To_Server"):WaitForChild("Handle_Initiate_S"):FireServer(unpack(args))
-                    for i = 1, 7 do
-                        local args = {
-                            [1] = "ice_demon_art_wintry_iciles_damage",
-                            [2] = player.Character,
-                            [3] = target:GetModelCFrame()
-                        }
-                    game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("To_Server"):WaitForChild("Handle_Initiate_S"):FireServer(unpack(args))
-                    end
-                    task.wait(15)
-                end
-                task.wait()
-            end
-        end)
-    end
-})
-
-
 --misc tab
 
-local miscgb = Misc:AddSection({
+local miscs = misctab:AddSection({
 	Name = "Misc"
 })
-miscgb:AddToggle({
-    Name = 'Remove FX',
+miscs:AddToggle({
+    Name = 'Remove Particles',
     Default = false,
     Callback = function(state)
         if state then
@@ -834,8 +661,8 @@ miscgb:AddToggle({
     end
 })
 
-miscgb:AddButton({
-    Name = 'Delete map, PERF BOOST',
+miscs:AddButton({
+    Name = 'Delete map',
     Callback = function()
         workspace.Map:Destroy()
         workspace.Terrain.Water_Regions:Destroy()
@@ -843,8 +670,8 @@ miscgb:AddButton({
 })
 
 
-miscgb:AddToggle({
-    Name = 'always day (visual only)',
+miscs:AddToggle({
+    Name = 'Always Day',
     Default = false,
     Callback = function(state)
         alwaysday = state
@@ -859,30 +686,7 @@ miscgb:AddToggle({
     end
 })
 
-
-local wbhook = WebHook:AddSection({
-	Name = "Webhook Settings"
-})
-
-wbhook:AddTextbox({
-	Name = "webhook url",
-	Default = "enter url",
-	TextDisappear = true,
-	Callback = function(Value)
-        webhook = Value
-	end	  
-})
-
-wbhook:AddToggle({
-    Text = 'webhook tog',
-    Default = false,
-
-    Callback = function(state)
-        webhooktog = state
-    end
-})
-
-local teleportgb = Misc:AddSection({
+local teleportgb = misctab:AddSection({
 	Name = "Teleport"
 })
 
@@ -895,45 +699,7 @@ teleportgb:AddButton({
 })
 -- BUFF TAB
 
-local godmodegb = Buffs:AddSection({
-	Name = "God Mode"
-})
-godmodegb:AddDropdown({
-	Name = "Select the Method you want",
-	Default = nil,
-	Options = {
-        "Scythe -- Mas 28 + Equipped",
-        "Water Breathing -- Mas 1",
-        "Insect Breating -- Mas 28", 
-        "Blood Burst Bda -- Mas 20", 
-        "Wind Breathing -- Mas 30",
-        "Snow Breathing -- Mas 1", 
-        "Flame Breathing -- Mas 32",
-        "Beast Breathing -- Mas 40", 
-        "Shockwave Bda -- Mas 44",
-        "Dream Bda -- Ult Unlocked", 
-        "Swamp Bda -- Ult Unlocked", 
-        "Sound Breathing -- Mas 50",
-        "Ice Bda -- Ult Unlocked"},
-	Callback = function(Value)
-		updgodmode(Value)
-	end    
-})
-
-godmodegb:AddToggle({
-    Text = 'GodMode',
-    Default = false,
-
-    Callback = function(Value)
-        if Value then
-            godmode = true
-        else
-            godmode = false
-        end
-    end
-})
-
-local buffgb = Buffs:AddSection({
+local buffgb = buffstab:AddSection({
 	Name = "Buffs"
 })
 
@@ -942,12 +708,6 @@ buffgb:AddButton({
     Name = "ThunderMode [Human]",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.thundertang123:FireServer(true)
-    end
-})
-buffgb:AddButton({
-    Name = "Mist Clone",
-    Callback = function()
-        game:GetService("ReplicatedStorage").Remotes.immense_reflexes_asd123:FireServer()
     end
 })
 buffgb:AddButton({
@@ -963,7 +723,7 @@ buffgb:AddButton({
     end
 })
 buffgb:AddButton({
-    Name = "WarDrums [Damage+Speed Boost]",
+    Name = "WarDrums [Demon]",
     Callback = function()
         while true do
             game:GetService("ReplicatedStorage").Remotes.war_Drums_remote:FireServer(true)
@@ -972,13 +732,13 @@ buffgb:AddButton({
     end
 })
 buffgb:AddButton({
-    Name = "Health Regen",
+    Name = "Health Regeneration [Any Breathing]",
     Callback = function()
         game:GetService("ReplicatedStorage").Remotes.regeneration_breathing_remote:FireServer(true)
     end
 })
 buffgb:AddButton({
-    Name = "Sun Immunity",
+    Name = "Sun Immunity [Demon]",
     Callback = function()
         game:GetService("Players").LocalPlayer.PlayerScripts.Small_Scripts.Gameplay.Sun_Damage.Disabled = true
     end
