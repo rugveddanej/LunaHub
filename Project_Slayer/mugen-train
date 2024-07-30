@@ -43,7 +43,7 @@ local Window = OrionLib:MakeWindow({Name = "Luna Hub", HidePremium = false, Save
 
 local mugen = Window:MakeTab({
     Name = "Mugen",
-    Icon = "rbxassetid://4483345998",
+    Icon = "rbxassetid://18718506911",
     PremiumOnly = false
 })
 
@@ -124,5 +124,23 @@ autochest:AddToggle({
     Default = false,
     Callback = function(state)
         collectchest = state
+    end
+})
+
+local settingstab = Window:MakeTab({
+    Name = "Settings",
+    Icon = "rbxassetid://18718015946",
+    PremiumOnly = false
+})
+
+local gui = settingstab:AddSection({
+    Name = "GUI"
+})
+
+-- Add the Unload GUI button
+gui:AddButton({
+    Name = "Unload Gui",
+    Callback = function()
+        OrionLib:Destroy()
     end
 })
